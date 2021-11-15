@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WalletRepository extends JpaRepository<Wallet, String> {
-    public Wallet createWallet(Wallet wallet);
-    public void updatedWallet(Wallet wallet);
-    public Wallet getWalletById(String id);
+//    public Wallet createWallet(Wallet wallet);
+//    public void updatedWallet(Wallet wallet);
+//    public Wallet getWalletById(String id);
 }

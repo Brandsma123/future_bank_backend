@@ -9,8 +9,6 @@ import javax.persistence.*;
 public class Merchant {
 
     @Id
-    @GeneratedValue(generator = "uuid-generator")
-    @GenericGenerator(name = "uuid-generator", strategy = "uuid")
     private String id;
 
     @Column(nullable = false, length = 45, name = "full_name")
@@ -25,6 +23,10 @@ public class Merchant {
     public Merchant(String fullName, Integer price) {
         this.fullName = fullName;
         this.price = price;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getId() {

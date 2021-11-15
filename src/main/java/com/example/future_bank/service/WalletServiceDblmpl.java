@@ -1,7 +1,9 @@
 package com.example.future_bank.service;
 
 import com.example.future_bank.entity.Wallet;
+import org.springframework.stereotype.Service;
 
+@Service
 public class WalletServiceDblmpl implements WalletService{
     @Override
     public Wallet createWallet(Wallet wallet) {
