@@ -4,10 +4,7 @@ import com.example.future_bank.entity.Account;
 import com.example.future_bank.entity.Merchant;
 import com.example.future_bank.service.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,8 +18,18 @@ public class MerchantControler {
         return merchantService.createMerchant(merchant);
     }
 
-    @GetMapping("/allMerchant")
+    @GetMapping("/merchants")
     public List<Merchant> getAllMerchant(){
         return merchantService.getAllMerchant();
+    }
+
+    @DeleteMapping("/merchant")
+    public void deleteMerchantById(@RequestParam(name = "id") String id){
+        merchantService.deleteMerchant(id);
+    }
+
+    @PutMapping("merchant")
+    public Merchant updateMerchant(@RequestBody Merchant merchant){
+        return merchantService.updateMerchant(merchant);
     }
 }

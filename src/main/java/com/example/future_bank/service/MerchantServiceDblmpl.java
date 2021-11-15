@@ -29,19 +29,22 @@ public class MerchantServiceDblmpl implements MerchantService{
     }
 
 
-
+    @Transactional
     @Override
     public List<Merchant> getAllMerchant() {
         return merchantRepository.getAllMerchant();
     }
 
+    @Transactional
     @Override
-    public Merchant deleteMerchant(String id) {
-        return null;
+    public void deleteMerchant(String id) {
+         merchantRepository.deleteMerchantById(id);
     }
 
+    @Transactional
     @Override
     public Merchant updateMerchant(Merchant merchant) {
-        return null;
+        merchantRepository.updateMerchant(merchant.getId(), merchant.getFullName(), merchant.getPrice());
+        return merchant;
     }
 }

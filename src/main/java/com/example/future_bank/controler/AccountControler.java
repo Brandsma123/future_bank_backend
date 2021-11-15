@@ -21,7 +21,7 @@ public class AccountControler {
         accountService.registerAccount(account);
     }
 
-    @GetMapping("/allAccount")
+    @GetMapping("/accounts")
     public List<Account> getAllAccount(){
         return accountService.getAllAccount();
     }

@@ -16,6 +16,7 @@ public class AccountServiceDblmpl implements AccountService{
     @Autowired
     AccountRepository accountRepository;
 
+    @Transactional
     @Override
     public List<Account> getAllAccount() {
         return accountRepository.getAllAccount();
@@ -41,11 +42,13 @@ public class AccountServiceDblmpl implements AccountService{
     }
 
 
+    @Transactional
     @Override
     public void deleteAccount(String id) {
          accountRepository.deleteAccountById(id);
     }
 
+    @Transactional
     @Override
     public Account updateAccount(Account account) {
         accountRepository.updateAccount(account.getId(), account.getFullName(), account.getEmail(), account.getPhoneNumber(), account.getAddress(), account.getMotherName(), account.getNoAccount(), account.getPassword(), account.getUserName());
