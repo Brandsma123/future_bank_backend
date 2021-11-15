@@ -11,8 +11,6 @@ import java.util.Objects;
 public class Account {
 
     @Id
-    @GeneratedValue(generator = "uuid-generator")
-    @GenericGenerator(name = "uuid-generator", strategy = "uuid")
     private String id;
 
     @Column(nullable = false, length = 45, name = "full_name")
