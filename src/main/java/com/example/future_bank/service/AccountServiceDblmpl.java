@@ -36,6 +36,8 @@ public class AccountServiceDblmpl implements AccountService{
     @Transactional
     @Override
     public Account registerAccount(Account account) {
+        Boolean existAccount = validation(account);
+        if (!existAccount){
         account.setPassword(passwordEncoder.encode((account.getPassword())));
         String uuid = UUID.randomUUID().toString().replace("-", "");
         account.setId(uuid);
@@ -50,7 +52,9 @@ public class AccountServiceDblmpl implements AccountService{
                 account.getNoAccount(),
                 account.getPassword(),
                 account.getUserName()
-        );
+        );}else {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN,"your data isn't exist");
+        }
         return account;
     }
 
@@ -58,16 +62,29 @@ public class AccountServiceDblmpl implements AccountService{
     @Transactional
     @Override
     public void deleteAccount(String id) {
-         accountRepository.deleteAccountById(id);
+        Boolean existAccount = validation(accountRepository.getAccountById(id));
+        if (!existAccount){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN,"your data isn't exist");
+        }else {
+            accountRepository.deleteAccountById(id);
+        }
     }
 
     @Transactional
     @Override
     public void updateAccount(Account account) {
-//        Boolean existAccount = getAllAccount().stream()
-//                        .anyMatch(e -> e.equals(account));
-
+        Boolean existAccount = validation(account);
+        if (existAccount){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN,"your data isn't exist");
+        }else {
             accountRepository.updateAccount(account.getId(), account.getFullName(), account.getEmail(), account.getPhoneNumber(), account.getAddress(), account.getMotherName(), account.getNoAccount(), account.getPassword(), account.getUserName());
+        }
+    }
+
+    private Boolean validation(Account account) {
+        Boolean existAccount = getAllAccount().stream()
+                        .anyMatch(e -> e.equals(account));
+        return existAccount;
     }
 
     public void showById(String id){
