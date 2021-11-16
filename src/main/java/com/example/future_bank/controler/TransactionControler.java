@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public class TransactionControler {
@@ -21,5 +22,10 @@ public class TransactionControler {
     public Transaction createTransaction(@RequestBody Transaction transaction){
         transaction.setDate(new Timestamp(System.currentTimeMillis()));
         return transactionService.createTransaction(transaction);
+    }
+
+    @GetMapping("/transactions")
+    public List<Transaction> getAllTransaction(){
+        return transactionService.getAllTransaction();
     }
 }
