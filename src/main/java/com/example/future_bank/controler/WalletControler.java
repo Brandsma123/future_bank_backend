@@ -28,4 +28,9 @@ public class WalletControler {
     public void deleteWalletById(@RequestParam(name = "id") String id){
         walletService.deleteWallet(id);
     }
+
+    @PutMapping("/wallet")
+    public void updateWallet(@RequestBody Wallet wallet){
+        walletService.updatedWallet(wallet);
+    }
 }
