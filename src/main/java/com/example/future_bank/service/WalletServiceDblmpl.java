@@ -43,7 +43,7 @@ public class WalletServiceDblmpl implements WalletService{
 
     @Transactional
     @Override
-    public List<Wallet> getAllWallet(Wallet wallet) {
+    public List<Wallet> getAllWallet() {
         return walletRepository.getAllWallet();
     }
 
