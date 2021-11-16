@@ -4,6 +4,7 @@ import com.example.future_bank.entity.Account;
 import com.example.future_bank.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,6 +18,9 @@ public class AccountServiceDblmpl implements AccountService{
 
     @Autowired
     AccountRepository accountRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Transactional
     @Override
@@ -32,6 +36,7 @@ public class AccountServiceDblmpl implements AccountService{
     @Transactional
     @Override
     public Account registerAccount(Account account) {
+        account.setPassword(passwordEncoder.encode((account.getPassword())));
         String uuid = UUID.randomUUID().toString().replace("-", "");
         account.setId(uuid);
 
