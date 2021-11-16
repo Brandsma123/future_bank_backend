@@ -14,19 +14,8 @@ import java.util.Optional;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, String> {
 
-    @Query(value = "select * from user_account where no_acount=?1",nativeQuery = true)
-    public boolean existsByNoAccount(String noAccount);
-
-    @Query(value = "select * from user_account where phone_number=?1",nativeQuery = true)
-    public boolean existsByPhoneNumber(String phoneNumber);
-
-    @Query(value = "select * from user_account where email=?1",nativeQuery = true)
-    public boolean existsByEmail(String email);
-
-    @Query(value = "select * from user_account where user_name=?1",nativeQuery = true)
-    public boolean existsByUserName(String userName);
-
-    public Optional<Account> findAccountByUserName(String username);
+    @Query(value = "SELECT * FROM user_account WHERE id = ?1", nativeQuery = true)
+    public Account getAccountById(String id);
 
     @Query(value = "select * from user_account", nativeQuery = true)
     public List<Account> getAllAccount();

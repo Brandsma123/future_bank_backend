@@ -17,8 +17,8 @@ public class AccountControler {
     AccountService accountService;
 
     @PostMapping("register")
-    public Account createAccount(@RequestBody Account account){
-        return accountService.registerAccount(account);
+    public void createAccount(@RequestBody Account account){
+        accountService.registerAccount(account);
     }
 
     @GetMapping("/accounts")
@@ -32,7 +32,7 @@ public class AccountControler {
     }
 
     @PutMapping("/account")
-    public Account updateAccount(@RequestBody Account account){
-       return accountService.updateAccount(account);
+    public void updateAccount(@RequestBody Account account){
+        accountService.updateAccount(account);
     }
 }

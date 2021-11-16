@@ -47,4 +47,11 @@ public class MerchantServiceDblmpl implements MerchantService{
         merchantRepository.updateMerchant(merchant.getId(), merchant.getFullName(), merchant.getPrice());
         return merchant;
     }
+
+    @Override
+    public Merchant getMerchantById(String id) {
+        return merchantRepository.getMerchantById(id);
+    }
+
+
 }

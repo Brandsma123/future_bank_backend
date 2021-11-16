@@ -13,6 +13,9 @@ import java.util.List;
 @Repository
 public interface MerchantRepository extends JpaRepository<Merchant, String> {
 
+    @Query(value = "SELECT * FROM user_merchant WHERE id = ?1", nativeQuery = true)
+    public Merchant getMerchantById(String id);
+
     @Query(value = "select * from user_merchant", nativeQuery = true)
     public List<Merchant> getAllMerchant();
 

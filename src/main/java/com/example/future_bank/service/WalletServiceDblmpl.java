@@ -47,5 +47,15 @@ public class WalletServiceDblmpl implements WalletService{
         return walletRepository.getAllWallet();
     }
 
+    @Override
+    public Wallet getWalletById(String id) {
+        return walletRepository.getWalletById(id);
+    }
+
+    @Override
+    public void transactionCategory(Wallet wallet) {
+        walletRepository.transactionCategory(wallet.getId(), wallet.getSaldo());
+    }
+
 
 }

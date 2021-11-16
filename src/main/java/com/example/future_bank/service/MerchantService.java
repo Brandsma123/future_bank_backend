@@ -9,4 +9,5 @@ public interface MerchantService {
     public List<Merchant> getAllMerchant();
     public void deleteMerchant(String id);
     public Merchant updateMerchant(Merchant merchant);
+    public Merchant getMerchantById(String id);
 }

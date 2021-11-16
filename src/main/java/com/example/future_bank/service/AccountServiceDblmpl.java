@@ -24,23 +24,17 @@ public class AccountServiceDblmpl implements AccountService{
         return accountRepository.getAllAccount();
     }
 
+    @Override
+    public Account getAccountById(String id) {
+        return accountRepository.getAccountById(id);
+    }
+
     @Transactional
     @Override
     public Account registerAccount(Account account) {
         String uuid = UUID.randomUUID().toString().replace("-", "");
         account.setId(uuid);
-        if (accountRepository.existsByPhoneNumber(account.getPhoneNumber())){
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "your data is exist");
-        }
-        if (accountRepository.existsByUserName(account.getUserName())){
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "your data is exist");
-        }
-        if (accountRepository.existsByNoAccount(account.getNoAccount())){
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "your data is exist");
-        }
-        if (accountRepository.existsByEmail(account.getEmail())){
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "your data is exist");
-        }
+
         accountRepository.RegisterAccount(
                 account.getId(),
                 account.getFullName(),
@@ -64,10 +58,14 @@ public class AccountServiceDblmpl implements AccountService{
 
     @Transactional
     @Override
-    public Account updateAccount(Account account) {
-        accountRepository.updateAccount(account.getId(), account.getFullName(), account.getEmail(), account.getPhoneNumber(), account.getAddress(), account.getMotherName(), account.getNoAccount(), account.getPassword(), account.getUserName());
-        return account;
+    public void updateAccount(Account account) {
+//        Boolean existAccount = getAllAccount().stream()
+//                        .anyMatch(e -> e.equals(account));
+
+            accountRepository.updateAccount(account.getId(), account.getFullName(), account.getEmail(), account.getPhoneNumber(), account.getAddress(), account.getMotherName(), account.getNoAccount(), account.getPassword(), account.getUserName());
     }
 
-
+    public void showById(String id){
+        accountRepository.getAccountById(id);
+    }
 }

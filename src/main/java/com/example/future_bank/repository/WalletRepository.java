@@ -1,6 +1,5 @@
 package com.example.future_bank.repository;
 
-import com.example.future_bank.entity.Account;
 import com.example.future_bank.entity.Wallet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,6 +11,9 @@ import java.util.List;
 
 @Repository
 public interface WalletRepository extends JpaRepository<Wallet, String> {
+
+    @Query(value = "SELECT * FROM user_wallet WHERE id = ?1", nativeQuery = true)
+    public Wallet getWalletById(String id);
 
     @Query(value = "select * from user_wallet", nativeQuery = true)
     public List<Wallet> getAllWallet();
@@ -31,4 +33,10 @@ public interface WalletRepository extends JpaRepository<Wallet, String> {
     public void updateWallet(@Param("id") String id,
                              @Param("saldo") Integer saldo,
                              @Param("account") String account);
+
+    @Modifying
+    @Query(value = "update user_wallet set saldo = :saldo where id = :id", nativeQuery = true)
+    public void transactionCategory(
+            @Param("id") String id,
+            @Param("saldo") Integer saldo);
 }

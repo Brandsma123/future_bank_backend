@@ -11,4 +11,6 @@ public interface WalletService {
     public void updatedWallet(Wallet wallet);
     public void deleteWallet(String id);
     public List<Wallet> getAllWallet();
+    public Wallet getWalletById(String id);
+    public void transactionCategory(Wallet wallet);
 }
