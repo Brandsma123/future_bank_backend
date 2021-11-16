@@ -11,8 +11,6 @@ import java.util.List;
 public class Wallet {
 
     @Id
-    @GeneratedValue(generator = "uuid-generator")
-    @GenericGenerator(name = "uuid-generator", strategy = "uuid")
     private String id;
     private Integer saldo;
 
@@ -32,6 +30,14 @@ public class Wallet {
     public Wallet(Integer saldo, List<Transaction> transactions) {
         this.saldo = saldo;
         this.transactions = transactions;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public Integer getSaldo() {

@@ -23,7 +23,7 @@ public interface MerchantRepository extends JpaRepository<Merchant, String> {
                                @Param("price") Integer price);
 
     @Modifying
-    @Query(value = "delete user_merchant where id=:id", nativeQuery = true)
+    @Query(value = "delete from user_merchant where id=:id", nativeQuery = true)
     public void deleteMerchantById (@Param("id") String id);
 
     @Modifying

@@ -17,8 +17,8 @@ public class AccountControler {
     AccountService accountService;
 
     @PostMapping("register")
-    public void createAccount(@RequestBody Account account){
-        accountService.registerAccount(account);
+    public Account createAccount(@RequestBody Account account){
+        return accountService.registerAccount(account);
     }
 
     @GetMapping("/accounts")
