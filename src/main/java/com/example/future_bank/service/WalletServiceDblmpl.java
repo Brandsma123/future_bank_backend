@@ -21,8 +21,8 @@ public class WalletServiceDblmpl implements WalletService{
     @Transactional
     @Override
     public Wallet createWallet(Wallet wallet) {
-        Boolean existWallet = validationMerchant(wallet);
-        if(!existWallet){
+        Boolean existWallet = validationWallet(wallet);
+        if (!existWallet){
         String uuid = UUID.randomUUID().toString().replace("-", "");
         wallet.setId(uuid);
         walletRepository.createWallet(
@@ -38,23 +38,24 @@ public class WalletServiceDblmpl implements WalletService{
     @Transactional
     @Override
     public void updatedWallet(Wallet wallet) {
-        Boolean existWallet = validationMerchant(wallet);
+        Boolean existWallet = validationWallet(wallet);
         if (existWallet){
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN,"your data isn't exist");
-        } else {
-            walletRepository.updateWallet(wallet.getId(), wallet.getSaldo(), wallet.getAccountId());
-        }
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN,"your data isn't exist");
+            }else {
+                walletRepository.updateWallet(wallet.getId(), wallet.getSaldo(), wallet.getAccountId());
+            }
     }
 
-    private Boolean validationMerchant(Wallet wallet) {
+    private Boolean validationWallet(Wallet wallet) {
         Boolean existWallet = getAllWallet().stream().anyMatch(e -> e.equals(wallet));
         return existWallet;
     }
 
+
     @Transactional
     @Override
     public void deleteWallet(String id) {
-        Boolean existWallet = validationMerchant(walletRepository.getWalletById(id));
+        Boolean existWallet = validationWallet(walletRepository.getWalletById(id));
         if (!existWallet){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN,"your data isn't exist");
         }else {

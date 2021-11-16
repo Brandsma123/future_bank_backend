@@ -34,16 +34,16 @@ public class TransactionServiceDblmpl implements TransactionService{
         String uuid = UUID.randomUUID().toString().replace("-", "");
         transaction.setId(uuid);
         Wallet wallet = walletService.getWalletById(transaction.getWalletId());
-        if (transaction.getCategory().equals("Withdraw")){
+        if (transaction.getCategory().equalsIgnoreCase("Withdraw")){
             if (wallet.getSaldo() < transaction.getNominal()){
                 throw new ResponseStatusException(HttpStatus.FORBIDDEN, "your saldo is not enough");
             }
             wallet.withDrawTransaction(transaction.getNominal());
             walletService.transactionCategory(wallet);
-        }else if (transaction.getCategory().equals("Top Up")){
+        }else if (transaction.getCategory().equalsIgnoreCase("Top Up")){
             wallet.topUpTransaction(transaction.getNominal());
             walletService.transactionCategory(wallet);
-        }else if (transaction.getCategory().equals("Payment")){
+        }else if (transaction.getCategory().equalsIgnoreCase("Payment")){
             Merchant merchant = merchantService.getMerchantById(transaction.getMerchantId());
             if (wallet.getSaldo() < merchant.getPrice()){
                 throw new ResponseStatusException(HttpStatus.FORBIDDEN,"your saldo not enough");
@@ -71,7 +71,6 @@ public class TransactionServiceDblmpl implements TransactionService{
         }
         return transactions;
     }
-
 
     @Transactional
     @Override
