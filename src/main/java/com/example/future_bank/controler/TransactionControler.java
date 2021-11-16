@@ -33,6 +33,7 @@ public class TransactionControler {
 
     @PutMapping("/transaction")
     public void updateTransaction(@RequestBody Transaction transaction){
+        transaction.setDate(new Timestamp(System.currentTimeMillis()));
         transactionService.updatedTransaction(transaction);
     }
 }

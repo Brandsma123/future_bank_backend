@@ -3,8 +3,10 @@ package com.example.future_bank.service;
 import com.example.future_bank.entity.Account;
 import com.example.future_bank.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.awt.print.Pageable;
 import java.util.List;
@@ -27,6 +29,18 @@ public class AccountServiceDblmpl implements AccountService{
     public Account registerAccount(Account account) {
         String uuid = UUID.randomUUID().toString().replace("-", "");
         account.setId(uuid);
+        if (accountRepository.existsByPhoneNumber(account.getPhoneNumber())){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "your data is exist");
+        }
+        if (accountRepository.existsByUserName(account.getUserName())){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "your data is exist");
+        }
+        if (accountRepository.existsByNoAccount(account.getNoAccount())){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "your data is exist");
+        }
+        if (accountRepository.existsByEmail(account.getEmail())){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "your data is exist");
+        }
         accountRepository.RegisterAccount(
                 account.getId(),
                 account.getFullName(),
