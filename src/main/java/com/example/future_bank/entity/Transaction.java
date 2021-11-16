@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -12,8 +14,6 @@ import java.util.Date;
 public class Transaction {
 
     @Id
-    @GeneratedValue(generator = "uuid-generator")
-    @GenericGenerator(name = "uuid-generator", strategy = "uuid")
     private String id;
 
     @Column(nullable = false, length = 45)
@@ -24,7 +24,13 @@ public class Transaction {
 
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date date;
+    private Timestamp date;
+
+    @Transient
+    private String merchantId;
+
+    @Transient
+    private String walletId;
 
     @ManyToOne
     @JoinColumn(name = "wallet_id")
@@ -33,11 +39,31 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(String category, Integer nominal, Date date) {
+    public Transaction(String category, Integer nominal, Timestamp date) {
 
         this.category = category;
         this.nominal = nominal;
         this.date = date;
+    }
+
+    public String getMerchantId() {
+        return merchantId;
+    }
+
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public String getWalletId() {
+        return walletId;
+    }
+
+    public void setWalletId(String walletId) {
+        this.walletId = walletId;
+    }
+
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
     }
 
     public String getId() {
@@ -64,11 +90,11 @@ public class Transaction {
         this.nominal = nominal;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 

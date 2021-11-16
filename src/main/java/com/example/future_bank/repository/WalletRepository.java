@@ -23,12 +23,12 @@ public interface WalletRepository extends JpaRepository<Wallet, String> {
                              @Param("account")String account);
 
     @Modifying
-    @Query(value = "delete from user_wallet where id:id", nativeQuery = true)
+    @Query(value = "delete from user_wallet where id=:id", nativeQuery = true)
     public void deleteWalletById(@Param("id") String id);
 
     @Modifying
     @Query(value = "update user_wallet set saldo = :saldo, acount_id = :account where id = :id", nativeQuery = true)
     public void updateWallet(@Param("id") String id,
                              @Param("saldo") Integer saldo,
-                             @Param("account") Account account);
+                             @Param("account") String account);
 }

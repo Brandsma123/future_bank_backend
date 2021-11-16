@@ -32,7 +32,7 @@ public class WalletServiceDblmpl implements WalletService{
     @Transactional
     @Override
     public void updatedWallet(Wallet wallet) {
-        walletRepository.updateWallet(wallet.getId(), wallet.getSaldo(), wallet.getAccount());
+        walletRepository.updateWallet(wallet.getId(), wallet.getSaldo(), wallet.getAccountId());
     }
 
     @Transactional
