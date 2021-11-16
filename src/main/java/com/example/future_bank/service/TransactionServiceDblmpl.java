@@ -66,7 +66,10 @@ public class TransactionServiceDblmpl implements TransactionService{
     @Transactional
     @Override
     public List<Transaction> createMultipleTransactions(List<Transaction> transactions) {
-        return null;
+        for (Transaction transaction:transactions) {
+            createTransaction(transaction);
+        }
+        return transactions;
     }
 
 
