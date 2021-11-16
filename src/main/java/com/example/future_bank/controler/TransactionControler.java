@@ -30,4 +30,9 @@ public class TransactionControler {
     public void deleteTRansactionById(@RequestParam(name = "id") String id){
         transactionService.deleteTransaction(id);
     }
+
+    @PutMapping("/transaction")
+    public void updateTransaction(@RequestBody Transaction transaction){
+        transactionService.updatedTransaction(transaction);
+    }
 }
