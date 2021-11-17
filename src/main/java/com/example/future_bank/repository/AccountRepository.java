@@ -53,4 +53,7 @@ public interface AccountRepository extends JpaRepository<Account, String> {
                                 @Param("password") String password,
                                 @Param("userName") String userName);
 
+    @Modifying
+    @Query(value = "delete from user_account", nativeQuery = true)
+    public void deleteAllAccount();
 }
