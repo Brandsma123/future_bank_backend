@@ -5,6 +5,7 @@ import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "user_wallet")
@@ -27,9 +28,14 @@ public class Wallet {
     public Wallet() {
     }
 
-    public Wallet(Integer saldo, List<Transaction> transactions) {
+//    public Wallet(Integer saldo, List<Transaction> transactions) {
+//        this.saldo = saldo;
+//        this.transactions = transactions;
+//    }
+
+    public Wallet(Integer saldo, String accountId) {
         this.saldo = saldo;
-        this.transactions = transactions;
+        this.accountId = accountId;
     }
 
     public void setId(String id) {
@@ -78,4 +84,16 @@ public class Wallet {
 
     public void paymentTransaction (Integer payment){this.saldo -= payment;}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Wallet wallet = (Wallet) o;
+        return Objects.equals(id, wallet.id) && Objects.equals(saldo, wallet.saldo) && Objects.equals(accountId, wallet.accountId) && Objects.equals(account, wallet.account) && Objects.equals(transactions, wallet.transactions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, saldo, accountId, account, transactions);
+    }
 }
