@@ -3,6 +3,7 @@ package com.example.future_bank.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "user_merchant")
@@ -39,5 +40,18 @@ public class Merchant {
 
     public Integer getPrice() {
         return price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Merchant merchant = (Merchant) o;
+        return Objects.equals(id, merchant.id) && Objects.equals(fullName, merchant.fullName) && Objects.equals(price, merchant.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, fullName, price);
     }
 }
