@@ -1,0 +1,535 @@
+{
+	"info": {
+		"_postman_id": "47a7bef7-2bca-4ce3-a2e0-c346bf33f6cb",
+		"name": "Future Bank",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "update account",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":\"b03146a069324aef9aef3e5f02c9b699\",\n    \"fullName\":\"Alfian\",\n    \"email\":\"Alfian@gmail.com\",\n    \"phoneNumber\":\"089432335\",\n    \"address\":\"Bandung\",\n    \"motherName\":\"Rini\",\n    \"noAccount\":\"032493282\",\n    \"password\":\"rwewr\",\n    \"userName\":\"Alfian12\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/account",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/allAccount",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"allAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Account",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\":\"brandsma\",\n    \"email\":\"brandsma@gmail.com\",\n    \"phoneNumber\":\"094543523\",\n    \"address\":\"Silangit\",\n    \"motherName\":\"sini\",\n    \"noAccount\":\"4645645\",\n    \"password\":\"srdg\",\n    \"userName\":\"brandsma12\"\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete account by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/account?id=b03146a069324aef9aef3e5f02c9b699",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"account"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "b03146a069324aef9aef3e5f02c9b699"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Merchant",
+			"item": [
+				{
+					"name": "Create Merchant",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"brandsma\",\n    \"price\": 10000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/merchant",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"merchant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all Merchant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/allMerchant",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"allMerchant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Merchant",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\" : \"a788ef4561284cd6850a15dbe5a95b65\",\n    \"fullName\":\"limapa\",\n    \"price\":10000\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/merchant",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"merchant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete merchant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/merchant?id=a788ef4561284cd6850a15dbe5a95b65",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"merchant"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "a788ef4561284cd6850a15dbe5a95b65"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wallet",
+			"item": [
+				{
+					"name": "create wallet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"saldo\":10000,\n    \"accountId\":\"75c175bd8b7f4f9e82e2bd1a64ee270f\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/wallet",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"wallet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all wallets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/wallets",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"wallets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update wallet",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"aadc3f05754e4472bf7f061d1e224f5e\",\n    \"saldo\":423423432,\n    \"accountId\":\"75c175bd8b7f4f9e82e2bd1a64ee270f\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/wallet",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"wallet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete wallet by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/wallet?id=aadc3f05754e4472bf7f061d1e224f5e",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"wallet"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "aadc3f05754e4472bf7f061d1e224f5e"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "create transaction with payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category\":\"Payment\",\n    \"nominal\": 100,\n    \"walletId\":\"084ec2c3aa584d1dbd6e4c8355565bc7\",\n    \"merchantId\":\"0b6284cc30744fbb82370736af0927d1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/transaction",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category\":\"clothing\",\n    \"nominal\": 29000,\n    \"walletId\":\"c77339b5070c46c09cbbbe05b20b189e\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/transaction",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update transaction",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":\"9bb12b6c4d484652b79619810e4fabcb\",\n    \"category\":\"SmartPhone\",\n    \"nominal\": 870000,\n    \"walletId\":\"c77339b5070c46c09cbbbe05b20b189e\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/transaction",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete transaction",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/transaction?id=9bb12b6c4d484652b79619810e4fabcb",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "9bb12b6c4d484652b79619810e4fabcb"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create transaction withdraw",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category\":\"Withdraw\",\n    \"nominal\": 100,\n    \"walletId\":\"084ec2c3aa584d1dbd6e4c8355565bc7\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/transaction",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create transaction top up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category\":\"Top Up\",\n    \"nominal\": 2000,\n    \"walletId\":\"084ec2c3aa584d1dbd6e4c8355565bc7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/transaction",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "login to get token",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\":\"ringoaja\",\n    \"password\":\"ringo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

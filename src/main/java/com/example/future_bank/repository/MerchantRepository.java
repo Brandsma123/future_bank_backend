@@ -34,4 +34,8 @@ public interface MerchantRepository extends JpaRepository<Merchant, String> {
     public void updateMerchant(@Param("id") String id,
                               @Param("fullName") String fullName,
                               @Param("price") Integer price);
+
+    @Modifying
+    @Query(value = "delete from user_merchant", nativeQuery = true)
+    public void deleteAllMerchant();
 }

@@ -39,4 +39,8 @@ public interface WalletRepository extends JpaRepository<Wallet, String> {
     public void transactionCategory(
             @Param("id") String id,
             @Param("saldo") Integer saldo);
+
+    @Modifying
+    @Query(value = "delete from user_wallet", nativeQuery = true)
+    public void deleteAllWallet();
 }
